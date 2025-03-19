@@ -55,6 +55,7 @@ Adapun dataset yang digunakan diperoleh melalui situs kaggle yang dapat diunduh 
 
 ## **Data Exploration:**
 ### EDA Univariate
+
 ![download](https://github.com/user-attachments/assets/908bc468-a62f-4e66-a15a-ecdcce418c13)
 
 Grafik ini menunjukkan penyebaran harga rumah yang ada di data. Dari grafik tersebut, bisa dilihat bahwa sebagian besar harga rumah berada di kisaran yang cukup rendah hingga menengah. Semakin tinggi harga rumah, jumlahnya semakin sedikit. Ini artinya, rumah dengan harga terjangkau lebih banyak ditemukan di data dibandingkan rumah-rumah mewah yang harganya sangat mahal. Namun, ada juga beberapa rumah yang memiliki harga sangat tinggi, jauh di atas harga rata-rata. Rumah-rumah dengan harga sangat tinggi ini disebut sebagai outlier atau data pencilan. 
@@ -73,6 +74,7 @@ Kebanyakan rumah memiliki sekitar 3 sampai 4 kamar tidur dan 3 sampai 4 kamar ma
 Gambar ini menunjukkan bahwa sebagian besar rumah memiliki garasi, sementara sisanya tidak memiliki garasi. Artinya, keberadaan garasi adalah salah satu fitur umum pada rumah-rumah di dataset ini.
 
 ### EDA Multivariate
+
 ![download](https://github.com/user-attachments/assets/8b759702-8632-474b-8bd2-724a99b6e869)
 ![download](https://github.com/user-attachments/assets/fa222d15-46c5-44bf-974b-add5fe5c01b6)
 ![download](https://github.com/user-attachments/assets/9812368f-9ee9-4c5e-8614-a914e40e5ff8)
@@ -82,6 +84,7 @@ Secara umum, data menunjukkan bahwa luas tanah dan luas bangunan memiliki hubung
 Selain itu, mayoritas rumah memiliki jumlah kamar tidur dan kamar mandi di kisaran 3-4, menunjukkan preferensi pasar yang umum. Terkait keberadaan garasi, baik rumah yang memiliki garasi maupun yang tidak, memiliki distribusi harga yang cukup mirip, meskipun rumah dengan garasi cenderung memiliki variasi harga yang lebih tinggi.
 
 **Korelasi Matriks**
+
 ![download](https://github.com/user-attachments/assets/5f182429-4fa9-4e8d-9131-9d7c5318a13e)
 
 Luas Tanah (LT) dan Luas Bangunan (LB) memiliki korelasi cukup kuat dengan Harga Rumah (HARGA), masing-masing sebesar 0.74 dan 0.65. Artinya, semakin besar luas tanah atau bangunan, harga rumah cenderung lebih tinggi.
