@@ -92,67 +92,164 @@ Secara keseluruhan, tidak ada indikasi multikolinearitas ekstrem (korelasi mende
 1. **Data Cleaning:**
    - Kolom `HARGA` dibersihkan (hapus tanda titik, koma, diubah ke integer).
    - Kolom `GRS` diubah ke binary (1 = Ada Garasi, 0 = Tidak Ada).
+  ![image](https://github.com/user-attachments/assets/10322b27-0cbf-4644-bc94-12e9ca91220b)
+
 2. **Handling Outliers:**
    - Menggunakan metode **IQR (Interquartile Range)** untuk menghapus outlier pada kolom `HARGA`.
+![image](https://github.com/user-attachments/assets/7c83db07-4a86-4b92-bd10-2500056c02c9)
+
 3. **Feature Selection:**
    - Drop kolom `KOTA` karena tidak memberikan informasi variatif.
-4. **Scaling:**
-   - Menggunakan **StandardScaler** sebelum modeling karena beberapa model seperti KNN & SVR sensitif terhadap skala fitur.
-5. **Splitting:**
+  ![image](https://github.com/user-attachments/assets/5c8eaada-baae-46be-b3b9-26b53e2a95da)
+
+4. **Splitting:**
    - Train-test split sebesar **70:30**.
+![image](https://github.com/user-attachments/assets/a94b8f53-5350-46c5-b0c3-c294c3e443d3)
+
+5. **Scaling:**
+   - Menggunakan **StandardScaler** sebelum modeling karena beberapa model sensitif terhadap skala fitur.
+  ![image](https://github.com/user-attachments/assets/a8a47cfb-88e2-4f47-aa83-6347328ec65f)
+
 
 ---
 
 ## **5. Modeling**
 
 ### **Model yang digunakan:**
+ada tahap ini, kita akan mengembangkan model machine learning dengan 3 algoritma. Kemudian, kita akan mengevaluasi performa masing-masing algoritma dan menentukan algoritma mana yang memberikan hasil prediksi terbaik. Ketiga algoritma yang akan kita gunakan, antara lain:
 
 1. **XGBoost Regressor**
-   - Parameter default: n_estimators=100, max_depth=5, learning_rate=0.1
+![image](https://github.com/user-attachments/assets/99643065-3748-4b62-9ce8-ff3f3b558521)
+XGBoost adalah algoritma machine learning berbasis ensemble boosting yang digunakan untuk prediksi regresi maupun klasifikasi. XGBoost membangun model secara bertahap dengan menambahkan pohon keputusan (decision tree) baru untuk memperbaiki kesalahan dari model sebelumnya.
+
+Kelebihan dari XGBoost yaitu:
+
+Cepat dan efisien (menggunakan parallel computing)
+Mampu menangani data dengan jumlah besar
+Dapat mengurangi overfitting dengan parameter regularisasi
+Pada tahap ini, saya menggunakan parameter:
+
+n_estimators=100 → jumlah pohon sebanyak 100
+max_depth=5 → kedalaman maksimum tiap pohon adalah 5
+learning_rate=0.1 → kecepatan pembelajaran model
+
 2. **Random Forest Regressor**
-   - Parameter default: n_estimators=100
+![image](https://github.com/user-attachments/assets/f8491e4a-d358-4160-be4d-70d4ddb1ced7)
+Random Forest adalah algoritma ensemble yang membangun banyak decision tree kemudian menggabungkan hasil prediksi dari masing-masing pohon untuk mendapatkan hasil akhir. Pada regresi, hasil akhirnya adalah rata-rata dari prediksi semua pohon.
+
+Kelebihan Random Forest:
+
+Akurat dan stabil (tidak mudah overfitting)
+Bisa menangani data dengan banyak fitur
+Di sini saya menggunakan parameter default:
+
+n_estimators=100 → membangun 100 pohon keputusan untuk memprediksi harga rumah.
+
 3. **K-Nearest Neighbors (KNN)**
-   - Default n_neighbors=5
+![image](https://github.com/user-attachments/assets/69b87c55-6b0e-4e4c-8d31-d21196aad36a)
+KNN merupakan algoritma yang memprediksi nilai sebuah data berdasarkan k tetangga terdekatnya. Jarak antara data dihitung (biasanya dengan Euclidean Distance), kemudian hasil prediksi diambil dari rata-rata nilai tetangga terdekat.
 
-### **Hyperparameter Tuning:**
-Dilakukan GridSearchCV dengan parameter:
+Kelebihan KNN:
 
-- **XGBoost:**
-  - `n_estimators`: [100, 200, 300]
-  - `max_depth`: [3, 5, 7]
-  - `learning_rate`: [0.1, 0.01, 0.001]
-  
-- **Random Forest:**
-  - `n_estimators`: [100, 200, 300]
-  - `max_depth`: [None, 5, 10]
-  - `min_samples_split`: [2, 5, 10]
-  
-- **KNN:**
-  - `n_neighbors`: [3, 5, 7, 9]
-  - `weights`: ['uniform', 'distance']
-  - `metric`: ['euclidean', 'manhattan']
+Mudah dipahami & diimplementasikan
+Tidak memerlukan proses pelatihan model (lazy learning)
+Namun, KNN kurang efektif untuk data berukuran besar karena proses pencarian tetangga dilakukan berulang kali.
+
+Pada tahap ini saya menggunakan parameter:
+
+n_neighbors=5 → mempertimbangkan 5 tetangga terdekat untuk memprediksi harga rumah.
+
+Berikut penjelasan singkat & general mengenai hyperparameter tuning yang kamu lakukan:
+
+---
+
+### **Hyperparameter Tuning**
+
+Hyperparameter tuning adalah proses untuk mencari kombinasi parameter terbaik yang dapat meningkatkan performa model machine learning. Setiap algoritma memiliki parameter tertentu yang bisa diatur sebelum proses training, dan parameter ini disebut **hyperparameter**.
+
+Pada tahap ini, saya menggunakan teknik **GridSearchCV**, yaitu metode pencarian sistematis untuk mencoba semua kombinasi parameter yang telah ditentukan, kemudian memilih kombinasi yang memberikan hasil terbaik berdasarkan evaluasi model.
+
+Berikut parameter yang dicoba untuk masing-masing algoritma:
+
+---
+
+### **XGBoost Regressor:**
+- `n_estimators`: jumlah pohon yang digunakan dalam model (100, 200, 300)
+- `max_depth`: kedalaman maksimal pohon (3, 5, 7)
+- `learning_rate`: kecepatan pembelajaran model (0.1, 0.01, 0.001)
+
+---
+
+### **Random Forest Regressor:**
+- `n_estimators`: jumlah pohon (100, 200, 300)
+- `max_depth`: batas kedalaman pohon (None, 5, 10)
+- `min_samples_split`: jumlah minimal sampel untuk memisah node (2, 5, 10)
+
+---
+
+### **K-Nearest Neighbors (KNN):**
+- `n_neighbors`: jumlah tetangga terdekat yang dipertimbangkan (3, 5, 7, 9)
+- `weights`: cara pemberian bobot ke tetangga ('uniform' → semua tetangga sama, 'distance' → tetangga yang lebih dekat punya bobot lebih tinggi)
+- `metric`: metode pengukuran jarak antar data ('euclidean', 'manhattan')
+
+---
+
+
+Siap! Aku hapus bagian “miliar”-nya dan bikin jadi lebih simpel & general. Berikut revisinya:
 
 ---
 
 ## **6. Evaluation**
 
 ### **Metrik Evaluasi:**
-- **Mean Absolute Error (MAE)**: Mengukur rata-rata selisih absolut antara prediksi dan nilai aktual.
-- **R² Score**: Mengukur seberapa besar variansi harga rumah dapat dijelaskan oleh model.
 
-### **Hasil Evaluasi Akhir:**
-
-| Model               | MAE             | R² Score |
-|--------------------|----------------|---------|
-| **XGBoost (Tuned)** | Rp 3.07 Miliar | 0.74    |
-| **Random Forest (Tuned)** | Rp 2.91 Miliar | **0.76** |
-| **KNN (Tuned)**     | Rp 3.31 Miliar | 0.68    |
-
-**Kesimpulan:**
-- **Random Forest Regressor** menghasilkan performa terbaik dengan R² Score tertinggi 0.76 dan MAE Rp 2.91 Miliar.
-- Random Forest dipilih sebagai model terbaik karena kestabilannya terhadap outlier dan kemampuan menangkap hubungan non-linear.
+- **Mean Absolute Error (MAE)**: Mengukur rata-rata selisih absolut antara hasil prediksi harga rumah dengan harga rumah yang sebenarnya. Semakin kecil nilai MAE, berarti prediksi model semakin akurat.
+  
+- **R² Score (Koefisien Determinasi)**: Menunjukkan seberapa baik model dapat menjelaskan variasi harga rumah. Nilainya antara 0 sampai 1. Semakin mendekati 1, semakin baik performa model.
 
 ---
+
+### **Hasil Evaluasi Akhir:**
+![image](https://github.com/user-attachments/assets/15fa3591-607d-4023-bd9c-3766d3b5310e)
+| Model               | Best Params                                                                 | MAE           | R² Score |
+|--------------------|-----------------------------------------------------------------------------|--------------|---------|
+| **XGBoost**         | {'learning_rate': 0.01, 'max_depth': 5, 'n_estimators': 100}                 | 3,071,323,000 | 0.74    |
+| **Random Forest**   | {'max_depth': None, 'min_samples_split': 5, 'n_estimators': 300}             | **2,913,505,000** | **0.76** |
+| **KNN**             | {'metric': 'euclidean', 'n_neighbors': 9, 'weights': 'distance'}             | 3,316,559,000 | 0.68    |
+
+---
+
+### **Interpretasi Hasil:**
+
+Oke! Berikut adalah versi general yang disesuaikan dengan output yang kamu kasih, tanpa menyebut angka tertentu seperti "miliar", tapi tetap jelas:
+
+---
+
+### **Interpretasi Hasil:**
+
+- Model **Random Forest Regressor** menunjukkan performa terbaik karena prediksi harga rumahnya paling mendekati harga aktual. Pada banyak kasus, selisih antara prediksi Random Forest dan harga asli lebih kecil dibandingkan model lainnya.
+
+- **R² Score sebesar 0.76** menandakan bahwa Random Forest mampu menjelaskan sekitar 76% variasi harga rumah berdasarkan fitur yang digunakan dalam data.
+
+- Model **XGBoost** juga memberikan hasil cukup baik, dengan prediksi yang mendekati harga aktual. Namun, performanya sedikit di bawah Random Forest, terlihat dari nilai R² Score sebesar 0.74.
+
+- Sementara itu, model **K-Nearest Neighbors (KNN)** memiliki performa paling rendah. Prediksi harga rumahnya cenderung memiliki selisih lebih besar dibanding harga aktual, serta R² Score yang lebih rendah yaitu 0.68.
+
+---
+
+### **Contoh Perbandingan Prediksi:**
+![image](https://github.com/user-attachments/assets/54a078dd-0aa1-47db-834f-05f909bb5c89)
+
+| Actual Price     | XGBoost Prediction | Random Forest Prediction | KNN Prediction |
+|------------------|-------------------|--------------------------|---------------|
+| Rp 25.00 Miliar  | Rp 23.05 Miliar   | Rp 23.04 Miliar          | Rp 21.40 Miliar|
+| Rp 8.00 Miliar   | Rp 8.23 Miliar    | Rp 8.37 Miliar           | Rp 8.96 Miliar |
+| Rp 20.00 Miliar  | Rp 15.45 Miliar   | Rp 16.50 Miliar          | Rp 14.60 Miliar|
+| Rp 39.00 Miliar  | Rp 32.79 Miliar   | Rp 34.03 Miliar          | Rp 24.28 Miliar|
+| Rp 16.00 Miliar  | Rp 15.19 Miliar   | Rp 16.51 Miliar          | Rp 15.76 Miliar|
+
+Terlihat bahwa **Random Forest** menghasilkan prediksi yang lebih stabil dan konsisten mendekati harga aktual, dibandingkan XGBoost dan KNN.
+
 
 ## **Referensi:**
 
