@@ -44,13 +44,13 @@ Adapun dataset yang digunakan diperoleh melalui situs kaggle yang dapat diunduh 
 
 - Jumlah Data: **1001 entri**
 - Fitur:
-  - **HARGA**: Harga rumah (target)
+  - **HARGA**: Harga rumah 
   - **LT**: Luas Tanah (m²)
   - **LB**: Luas Bangunan (m²)
   - **JKT**: Jumlah Kamar Tidur
   - **JKM**: Jumlah Kamar Mandi
-  - **GRS**: Ketersediaan Garasi (Ada/Tidak Ada → diubah ke binary)
-  - **KOTA**: Nama Kota (semua entri adalah Jakarta Selatan, di-drop)
+  - **GRS**: Ketersediaan Garasi 
+  - **KOTA**: Nama Kota 
 
 
 ## **Data Exploration:**
