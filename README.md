@@ -1,5 +1,5 @@
-Baik! Saya sudah melihat isi notebook dan struktur proyek kamu di PDF tadi. Berikut saya bantu buatkan **Detail Laporan** lengkap mulai dari Domain hingga Evaluasi, disesuaikan dengan hasil ipynb dan kriteria submission.
-
+# **Laporan Proyek Machine Learning Terapan**
+# **Anggraini Sagita Santia Putri**
 ---
 
 # **Detail Laporan: Prediksi Harga Rumah Jakarta Selatan**
@@ -14,36 +14,33 @@ Selain itu, riset dari [Bisa.ai](https://bisa.ai/portofolio/detail/MjQzOA) menun
 
 Oleh karena itu, prediksi harga rumah secara akurat menggunakan machine learning dapat membantu masyarakat (baik pembeli maupun penjual) dalam menentukan harga properti yang sesuai.
 
-**Sumber Data:**
-Dataset diambil dari Kaggle:  
-[Daftar Harga Rumah - Kaggle](https://www.kaggle.com/datasets/wisnuanggara/daftar-harga-rumah)
-
 ---
 
 ## **2. Business Understanding**
 
 ### **Problem Statement:**
-- Bagaimana memprediksi harga rumah di Jakarta Selatan dengan akurat menggunakan fitur seperti luas tanah, bangunan, jumlah kamar, dll?
-- Fitur apa saja yang paling berpengaruh terhadap harga rumah di Jakarta Selatan?
+# **Bussiness Understanding**
 
-### **Goals:**
-1. Membangun model machine learning yang dapat memprediksi harga rumah di Jakarta Selatan.
-2. Mengidentifikasi variabel yang paling mempengaruhi harga rumah.
+## Problem Statement:
 
-### **Solution Statements:**
-1. Melakukan **EDA (Exploratory Data Analysis)** untuk melihat korelasi antara fitur (LT, LB, JKT, JKM, GRS) dengan harga rumah.
-2. Membangun beberapa model Machine Learning:
-   - **XGBoost Regressor**
-   - **Random Forest Regressor**
-   - **K-Nearest Neighbors (KNN)**
-3. Melakukan **Hyperparameter Tuning** menggunakan GridSearchCV untuk meningkatkan performa model.
-4. Mengukur performa model dengan metrik **Mean Absolute Error (MAE)** dan **R² Score**.
+Saat ini, menentukan harga rumah yang sesuai cukup sulit karena ada banyak faktor yang mempengaruhinya. Setiap rumah memiliki kondisi yang berbeda, seperti luas bangunan, jumlah kamar tidur, jumlah kamar mandi, dan ketersediaan garasi. Hal ini membuat masyarakat, baik pembeli maupun penjual, kesulitan mengetahui apakah harga rumah tersebut terlalu mahal atau terlalu murah. Pembeli tidak ingin membeli rumah yang kemahalan, sedangkan penjual tidak ingin rugi karena menjual rumah di bawah harga pasaran.
 
+## Goals:
+
+1. Membuat model prediksi harga rumah di daerah Tebet, Jakarta Selatan.
+2. Mengetahui faktor apa saja yang paling berpengaruh terhadap harga rumah.
+
+## Solution Statements:
+
+1. Melakukan Exploratory Data Analysis (EDA) untuk mengetahui hubungan antara fitur-fitur seperti luas bangunan, jumlah kamar, dan fasilitas lainnya terhadap harga rumah.
+2. Membangun model Machine Learning untuk memprediksi harga rumah di daerah Tebet, Jakarta Selatan menggunakan dua algoritma, yaituRandom Forest Regressor, XGBoost Regressor ,KNN Regressor
 ---
 
 ## **3. Data Understanding**
+Adapun dataset yang digunakan diperoleh melalui situs kaggle yang dapat diunduh melalui [Daftar Harga Rumah - Kaggle](https://www.kaggle.com/datasets/wisnuanggara/daftar-harga-rumah)
 
 ### **Dataset Overview:**
+![image](https://github.com/user-attachments/assets/2ee3215b-9aff-4093-96e0-e9e9a6ec25e3)
 - Jumlah Data: **1001 entri**
 - Fitur:
   - **HARGA**: Harga rumah (target)
@@ -54,10 +51,16 @@ Dataset diambil dari Kaggle:
   - **GRS**: Ketersediaan Garasi (Ada/Tidak Ada → diubah ke binary)
   - **KOTA**: Nama Kota (semua entri adalah Jakarta Selatan, di-drop)
 
-### **Data Exploration:**
-- Distribusi harga sangat **right-skewed**, terdapat banyak outlier.
-- Korelasi tinggi antara **LT, LB** dengan harga rumah.
-- Visualisasi yang dilakukan: Histplot, Boxplot, Scatterplot, Korelasi Matriks (Heatmap).
+
+## **Data Exploration:**
+### EDA Univariate
+![download](https://github.com/user-attachments/assets/908bc468-a62f-4e66-a15a-ecdcce418c13)
+Grafik ini menunjukkan penyebaran harga rumah yang ada di data. Dari grafik tersebut, kita bisa lihat bahwa sebagian besar harga rumah berada di kisaran yang cukup rendah hingga menengah. Semakin tinggi harga rumah, jumlahnya semakin sedikit. Ini artinya, rumah dengan harga terjangkau lebih banyak ditemukan di data dibandingkan rumah-rumah mewah yang harganya sangat mahal. Namun, ada juga beberapa rumah yang memiliki harga sangat tinggi, jauh di atas harga rata-rata. Rumah-rumah dengan harga sangat tinggi ini disebut sebagai outlier atau data pencilan. 
+
+![download](https://github.com/user-attachments/assets/15f893a1-5ec0-4b5a-b107-0fa3264dfc20)
+1. Distribusi Harga Rumah: Grafik menunjukkan bahwa sebagian besar harga rumah berada di kisaran harga rendah sampai menengah. Namun, ada beberapa rumah yang harganya sangat tinggi dan jumlahnya jauh lebih sedikit dibandingkan rumah-rumah lainnya.
+2. Distribusi Luas Tanah dan Luas Bangunan: Kedua grafik ini menunjukkan bahwa kebanyakan rumah memiliki luas tanah dan luas bangunan di ukuran yang relatif kecil hingga sedang. Hanya ada sedikit rumah dengan ukuran tanah dan bangunan yang sangat besar.
+
 
 ---
 
