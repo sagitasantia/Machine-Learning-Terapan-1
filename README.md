@@ -57,7 +57,7 @@ Adapun dataset yang digunakan diperoleh melalui situs kaggle yang dapat diunduh 
 ### EDA Univariate
 ![download](https://github.com/user-attachments/assets/908bc468-a62f-4e66-a15a-ecdcce418c13)
 
-Grafik ini menunjukkan penyebaran harga rumah yang ada di data. Dari grafik tersebut, kita bisa lihat bahwa sebagian besar harga rumah berada di kisaran yang cukup rendah hingga menengah. Semakin tinggi harga rumah, jumlahnya semakin sedikit. Ini artinya, rumah dengan harga terjangkau lebih banyak ditemukan di data dibandingkan rumah-rumah mewah yang harganya sangat mahal. Namun, ada juga beberapa rumah yang memiliki harga sangat tinggi, jauh di atas harga rata-rata. Rumah-rumah dengan harga sangat tinggi ini disebut sebagai outlier atau data pencilan. 
+Grafik ini menunjukkan penyebaran harga rumah yang ada di data. Dari grafik tersebut, bisa dilihat bahwa sebagian besar harga rumah berada di kisaran yang cukup rendah hingga menengah. Semakin tinggi harga rumah, jumlahnya semakin sedikit. Ini artinya, rumah dengan harga terjangkau lebih banyak ditemukan di data dibandingkan rumah-rumah mewah yang harganya sangat mahal. Namun, ada juga beberapa rumah yang memiliki harga sangat tinggi, jauh di atas harga rata-rata. Rumah-rumah dengan harga sangat tinggi ini disebut sebagai outlier atau data pencilan. 
 
 ![download](https://github.com/user-attachments/assets/15f893a1-5ec0-4b5a-b107-0fa3264dfc20)
 
@@ -126,7 +126,7 @@ Secara keseluruhan, tidak ada indikasi multikolinearitas ekstrem (korelasi mende
 ## **5. Modeling**
 
 ### **Model yang digunakan:**
-ada tahap ini, kita akan mengembangkan model machine learning dengan 3 algoritma. Kemudian, kita akan mengevaluasi performa masing-masing algoritma dan menentukan algoritma mana yang memberikan hasil prediksi terbaik. Ketiga algoritma yang akan kita gunakan, antara lain:
+pada tahap ini, kita akan mengembangkan model machine learning dengan 3 algoritma. Kemudian, kita akan mengevaluasi performa masing-masing algoritma dan menentukan algoritma mana yang memberikan hasil prediksi terbaik. Ketiga algoritma yang akan kita gunakan, antara lain:
 
 1. **XGBoost Regressor**
 ![image](https://github.com/user-attachments/assets/99643065-3748-4b62-9ce8-ff3f3b558521)
@@ -171,9 +171,6 @@ Namun, KNN kurang efektif untuk data berukuran besar karena proses pencarian tet
 Pada tahap ini saya menggunakan parameter:
 
 n_neighbors=5 → mempertimbangkan 5 tetangga terdekat untuk memprediksi harga rumah.
-
-Berikut penjelasan singkat & general mengenai hyperparameter tuning yang kamu lakukan:
-
 ---
 
 ### **Hyperparameter Tuning**
@@ -207,10 +204,6 @@ Berikut parameter yang dicoba untuk masing-masing algoritma:
 
 ---
 
-
-Siap! Aku hapus bagian “miliar”-nya dan bikin jadi lebih simpel & general. Berikut revisinya:
-
----
 
 ## **6. Evaluation**
 
