@@ -235,35 +235,40 @@ Siap! Aku hapus bagian “miliar”-nya dan bikin jadi lebih simpel & general. B
 
 ### **Interpretasi Hasil:**
 
-Oke! Berikut adalah versi general yang disesuaikan dengan output yang kamu kasih, tanpa menyebut angka tertentu seperti "miliar", tapi tetap jelas:
+- Model **Random Forest Regressor** memiliki nilai MAE paling rendah sekitar **2.91 miliar**, yang berarti rata-rata prediksi harga rumah meleset sekitar angka tersebut dari harga aslinya. Nilai **R² Score sebesar 0.76** menunjukkan model ini dapat menjelaskan sekitar 76% variasi harga rumah berdasarkan fitur yang tersedia. Oleh karena itu, Random Forest menjadi model terbaik pada proyek ini.
 
----
+- Model **XGBoost** menunjukkan performa cukup baik dengan MAE sekitar **3.07 miliar** dan R² Score **0.74**. Prediksi model ini juga cukup dekat dengan harga asli, namun masih sedikit di bawah Random Forest.
 
-### **Interpretasi Hasil:**
-
-- Model **Random Forest Regressor** menunjukkan performa terbaik karena prediksi harga rumahnya paling mendekati harga aktual. Pada banyak kasus, selisih antara prediksi Random Forest dan harga asli lebih kecil dibandingkan model lainnya.
-
-- **R² Score sebesar 0.76** menandakan bahwa Random Forest mampu menjelaskan sekitar 76% variasi harga rumah berdasarkan fitur yang digunakan dalam data.
-
-- Model **XGBoost** juga memberikan hasil cukup baik, dengan prediksi yang mendekati harga aktual. Namun, performanya sedikit di bawah Random Forest, terlihat dari nilai R² Score sebesar 0.74.
-
-- Sementara itu, model **K-Nearest Neighbors (KNN)** memiliki performa paling rendah. Prediksi harga rumahnya cenderung memiliki selisih lebih besar dibanding harga aktual, serta R² Score yang lebih rendah yaitu 0.68.
+- Model **K-Nearest Neighbors (KNN)** memiliki performa paling rendah di antara ketiganya. Nilai MAE-nya lebih tinggi, yaitu sekitar **3.31 miliar**, dan R² Score sebesar **0.68**, yang artinya model ini kurang mampu menjelaskan variasi harga rumah dengan baik.
 
 ---
 
 ### **Contoh Perbandingan Prediksi:**
-![image](https://github.com/user-attachments/assets/54a078dd-0aa1-47db-834f-05f909bb5c89)
 
 | Actual Price     | XGBoost Prediction | Random Forest Prediction | KNN Prediction |
 |------------------|-------------------|--------------------------|---------------|
-| Rp 25.00 Miliar  | Rp 23.05 Miliar   | Rp 23.04 Miliar          | Rp 21.40 Miliar|
-| Rp 8.00 Miliar   | Rp 8.23 Miliar    | Rp 8.37 Miliar           | Rp 8.96 Miliar |
-| Rp 20.00 Miliar  | Rp 15.45 Miliar   | Rp 16.50 Miliar          | Rp 14.60 Miliar|
-| Rp 39.00 Miliar  | Rp 32.79 Miliar   | Rp 34.03 Miliar          | Rp 24.28 Miliar|
-| Rp 16.00 Miliar  | Rp 15.19 Miliar   | Rp 16.51 Miliar          | Rp 15.76 Miliar|
+| Rp 25.00 Miliar  | Rp 22.66 Miliar   | Rp 22.90 Miliar          | Rp 22.06 Miliar|
+| Rp 8.00 Miliar   | Rp 10.05 Miliar   | Rp 9.02 Miliar           | Rp 8.00 Miliar |
+| Rp 20.00 Miliar  | Rp 18.79 Miliar   | Rp 17.26 Miliar          | Rp 16.23 Miliar|
+| Rp 39.00 Miliar  | Rp 31.61 Miliar   | Rp 33.38 Miliar          | Rp 23.45 Miliar|
+| Rp 16.00 Miliar  | Rp 17.38 Miliar   | Rp 16.67 Miliar          | Rp 15.41 Miliar|
+| Rp 11.98 Miliar  | Rp 12.91 Miliar   | Rp 12.26 Miliar          | Rp 12.34 Miliar|
+| Rp 15.00 Miliar  | Rp 12.50 Miliar   | Rp 13.69 Miliar          | Rp 12.26 Miliar|
+| Rp 20.00 Miliar  | Rp 16.98 Miliar   | Rp 16.40 Miliar          | Rp 16.16 Miliar|
+| Rp 19.50 Miliar  | Rp 16.07 Miliar   | Rp 17.69 Miliar          | Rp 12.35 Miliar|
+| Rp 15.00 Miliar  | Rp 12.56 Miliar   | Rp 14.90 Miliar          | Rp 15.00 Miliar|
 
-Terlihat bahwa **Random Forest** menghasilkan prediksi yang lebih stabil dan konsisten mendekati harga aktual, dibandingkan XGBoost dan KNN.
+---
 
+### **Kesimpulan:**
+
+Berdasarkan evaluasi di atas, **Random Forest Regressor** dipilih sebagai model terbaik untuk prediksi harga rumah, karena:
+
+- Memiliki MAE paling rendah (prediksi lebih dekat ke harga asli).
+- Memiliki R² Score tertinggi (mampu menjelaskan sebagian besar variasi harga rumah).
+- Lebih stabil dalam menghadapi variasi data dan outlier dibandingkan model lain.
+
+---
 
 ## **Referensi:**
 
