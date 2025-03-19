@@ -100,12 +100,12 @@ Secara keseluruhan, tidak ada indikasi multikolinearitas ekstrem (korelasi mende
 1. **Data Cleaning:**
    - Kolom `HARGA` dibersihkan (hapus tanda titik, koma, diubah ke integer).
    - Kolom `GRS` diubah ke binary (1 = Ada Garasi, 0 = Tidak Ada).
-   - 
+  
   ![image](https://github.com/user-attachments/assets/10322b27-0cbf-4644-bc94-12e9ca91220b)
 
 2. **Handling Outliers:**
    - Menggunakan metode **IQR (Interquartile Range)** untuk menghapus outlier pada kolom `HARGA`.
-   - 
+
 ![image](https://github.com/user-attachments/assets/7c83db07-4a86-4b92-bd10-2500056c02c9)
 
 3. **Feature Selection:**
@@ -132,6 +132,7 @@ Secara keseluruhan, tidak ada indikasi multikolinearitas ekstrem (korelasi mende
 pada tahap ini, kita akan mengembangkan model machine learning dengan 3 algoritma. Kemudian, kita akan mengevaluasi performa masing-masing algoritma dan menentukan algoritma mana yang memberikan hasil prediksi terbaik. Ketiga algoritma yang akan kita gunakan, antara lain:
 
 1. **XGBoost Regressor**
+   
 ![image](https://github.com/user-attachments/assets/99643065-3748-4b62-9ce8-ff3f3b558521)
 
 XGBoost adalah algoritma machine learning berbasis ensemble boosting yang digunakan untuk prediksi regresi maupun klasifikasi. XGBoost membangun model secara bertahap dengan menambahkan pohon keputusan (decision tree) baru untuk memperbaiki kesalahan dari model sebelumnya.
@@ -148,6 +149,7 @@ max_depth=5 → kedalaman maksimum tiap pohon adalah 5
 learning_rate=0.1 → kecepatan pembelajaran model
 
 2. **Random Forest Regressor**
+   
 ![image](https://github.com/user-attachments/assets/f8491e4a-d358-4160-be4d-70d4ddb1ced7)
 
 Random Forest adalah algoritma ensemble yang membangun banyak decision tree kemudian menggabungkan hasil prediksi dari masing-masing pohon untuk mendapatkan hasil akhir. Pada regresi, hasil akhirnya adalah rata-rata dari prediksi semua pohon.
@@ -161,6 +163,7 @@ Di sini saya menggunakan parameter default:
 n_estimators=100 → membangun 100 pohon keputusan untuk memprediksi harga rumah.
 
 3. **K-Nearest Neighbors (KNN)**
+   
 ![image](https://github.com/user-attachments/assets/69b87c55-6b0e-4e4c-8d31-d21196aad36a)
 
 KNN merupakan algoritma yang memprediksi nilai sebuah data berdasarkan k tetangga terdekatnya. Jarak antara data dihitung (biasanya dengan Euclidean Distance), kemudian hasil prediksi diambil dari rata-rata nilai tetangga terdekat.
@@ -219,6 +222,7 @@ Berikut parameter yang dicoba untuk masing-masing algoritma:
 ---
 
 ### **Hasil Evaluasi Akhir:**
+
 ![image](https://github.com/user-attachments/assets/15fa3591-607d-4023-bd9c-3766d3b5310e)
 
 | Model               | Best Params                                                                 | MAE           | R² Score |
@@ -240,6 +244,7 @@ Berikut parameter yang dicoba untuk masing-masing algoritma:
 ---
 
 ### **Contoh Perbandingan Prediksi:**
+
 ![image](https://github.com/user-attachments/assets/77e74caf-3002-405d-9d8b-a3e3dabb53cb)
 
 | Actual Price     | XGBoost Prediction | Random Forest Prediction | KNN Prediction |
