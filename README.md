@@ -41,6 +41,7 @@ Adapun dataset yang digunakan diperoleh melalui situs kaggle yang dapat diunduh 
 
 ### **Dataset Overview:**
 ![image](https://github.com/user-attachments/assets/2ee3215b-9aff-4093-96e0-e9e9a6ec25e3)
+
 - Jumlah Data: **1001 entri**
 - Fitur:
   - **HARGA**: Harga rumah (target)
@@ -55,16 +56,20 @@ Adapun dataset yang digunakan diperoleh melalui situs kaggle yang dapat diunduh 
 ## **Data Exploration:**
 ### EDA Univariate
 ![download](https://github.com/user-attachments/assets/908bc468-a62f-4e66-a15a-ecdcce418c13)
+
 Grafik ini menunjukkan penyebaran harga rumah yang ada di data. Dari grafik tersebut, kita bisa lihat bahwa sebagian besar harga rumah berada di kisaran yang cukup rendah hingga menengah. Semakin tinggi harga rumah, jumlahnya semakin sedikit. Ini artinya, rumah dengan harga terjangkau lebih banyak ditemukan di data dibandingkan rumah-rumah mewah yang harganya sangat mahal. Namun, ada juga beberapa rumah yang memiliki harga sangat tinggi, jauh di atas harga rata-rata. Rumah-rumah dengan harga sangat tinggi ini disebut sebagai outlier atau data pencilan. 
 
 ![download](https://github.com/user-attachments/assets/15f893a1-5ec0-4b5a-b107-0fa3264dfc20)
+
 1. Distribusi Harga Rumah: Grafik menunjukkan bahwa sebagian besar harga rumah berada di kisaran harga rendah sampai menengah. Namun, ada beberapa rumah yang harganya sangat tinggi dan jumlahnya jauh lebih sedikit dibandingkan rumah-rumah lainnya.
 2. Distribusi Luas Tanah dan Luas Bangunan: Kedua grafik ini menunjukkan bahwa kebanyakan rumah memiliki luas tanah dan luas bangunan di ukuran yang relatif kecil hingga sedang. Hanya ada sedikit rumah dengan ukuran tanah dan bangunan yang sangat besar.
    
 ![download](https://github.com/user-attachments/assets/45fa2aa8-6601-4d04-9222-809e4c82441c)
+
 Kebanyakan rumah memiliki sekitar 3 sampai 4 kamar tidur dan 3 sampai 4 kamar mandi. Sangat sedikit rumah yang memiliki kamar tidur atau kamar mandi dalam jumlah sangat banyak (lebih dari 10 kamar).
 
 ![download](https://github.com/user-attachments/assets/bd699e23-d4c7-4093-8834-7a8cabdc67c2)
+
 Gambar ini menunjukkan bahwa sebagian besar rumah memiliki garasi, sementara sisanya tidak memiliki garasi. Artinya, keberadaan garasi adalah salah satu fitur umum pada rumah-rumah di dataset ini.
 
 ### EDA Multivariate
@@ -92,22 +97,27 @@ Secara keseluruhan, tidak ada indikasi multikolinearitas ekstrem (korelasi mende
 1. **Data Cleaning:**
    - Kolom `HARGA` dibersihkan (hapus tanda titik, koma, diubah ke integer).
    - Kolom `GRS` diubah ke binary (1 = Ada Garasi, 0 = Tidak Ada).
+   - 
   ![image](https://github.com/user-attachments/assets/10322b27-0cbf-4644-bc94-12e9ca91220b)
 
 2. **Handling Outliers:**
    - Menggunakan metode **IQR (Interquartile Range)** untuk menghapus outlier pada kolom `HARGA`.
+   - 
 ![image](https://github.com/user-attachments/assets/7c83db07-4a86-4b92-bd10-2500056c02c9)
 
 3. **Feature Selection:**
    - Drop kolom `KOTA` karena tidak memberikan informasi variatif.
+  
   ![image](https://github.com/user-attachments/assets/5c8eaada-baae-46be-b3b9-26b53e2a95da)
 
 4. **Splitting:**
    - Train-test split sebesar **70:30**.
+  
 ![image](https://github.com/user-attachments/assets/a94b8f53-5350-46c5-b0c3-c294c3e443d3)
 
 5. **Scaling:**
    - Menggunakan **StandardScaler** sebelum modeling karena beberapa model sensitif terhadap skala fitur.
+  
   ![image](https://github.com/user-attachments/assets/a8a47cfb-88e2-4f47-aa83-6347328ec65f)
 
 
@@ -120,6 +130,7 @@ ada tahap ini, kita akan mengembangkan model machine learning dengan 3 algoritma
 
 1. **XGBoost Regressor**
 ![image](https://github.com/user-attachments/assets/99643065-3748-4b62-9ce8-ff3f3b558521)
+
 XGBoost adalah algoritma machine learning berbasis ensemble boosting yang digunakan untuk prediksi regresi maupun klasifikasi. XGBoost membangun model secara bertahap dengan menambahkan pohon keputusan (decision tree) baru untuk memperbaiki kesalahan dari model sebelumnya.
 
 Kelebihan dari XGBoost yaitu:
@@ -135,6 +146,7 @@ learning_rate=0.1 → kecepatan pembelajaran model
 
 2. **Random Forest Regressor**
 ![image](https://github.com/user-attachments/assets/f8491e4a-d358-4160-be4d-70d4ddb1ced7)
+
 Random Forest adalah algoritma ensemble yang membangun banyak decision tree kemudian menggabungkan hasil prediksi dari masing-masing pohon untuk mendapatkan hasil akhir. Pada regresi, hasil akhirnya adalah rata-rata dari prediksi semua pohon.
 
 Kelebihan Random Forest:
@@ -147,6 +159,7 @@ n_estimators=100 → membangun 100 pohon keputusan untuk memprediksi harga rumah
 
 3. **K-Nearest Neighbors (KNN)**
 ![image](https://github.com/user-attachments/assets/69b87c55-6b0e-4e4c-8d31-d21196aad36a)
+
 KNN merupakan algoritma yang memprediksi nilai sebuah data berdasarkan k tetangga terdekatnya. Jarak antara data dihitung (biasanya dengan Euclidean Distance), kemudian hasil prediksi diambil dari rata-rata nilai tetangga terdekat.
 
 Kelebihan KNN:
@@ -211,6 +224,7 @@ Siap! Aku hapus bagian “miliar”-nya dan bikin jadi lebih simpel & general. B
 
 ### **Hasil Evaluasi Akhir:**
 ![image](https://github.com/user-attachments/assets/15fa3591-607d-4023-bd9c-3766d3b5310e)
+
 | Model               | Best Params                                                                 | MAE           | R² Score |
 |--------------------|-----------------------------------------------------------------------------|--------------|---------|
 | **XGBoost**         | {'learning_rate': 0.01, 'max_depth': 5, 'n_estimators': 100}                 | 3,071,323,000 | 0.74    |
