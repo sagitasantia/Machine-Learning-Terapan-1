@@ -2,7 +2,7 @@
 # **Anggraini Sagita Santia Putri**
 ---
 
-# **Detail Laporan: Prediksi Harga Rumah Jakarta Selatan**
+# **Detail Laporan: Prediksi Harga Rumah Jakarta Selatan🏠🏘️🏡**
 
 ---
 
