@@ -60,7 +60,29 @@ Grafik ini menunjukkan penyebaran harga rumah yang ada di data. Dari grafik ters
 ![download](https://github.com/user-attachments/assets/15f893a1-5ec0-4b5a-b107-0fa3264dfc20)
 1. Distribusi Harga Rumah: Grafik menunjukkan bahwa sebagian besar harga rumah berada di kisaran harga rendah sampai menengah. Namun, ada beberapa rumah yang harganya sangat tinggi dan jumlahnya jauh lebih sedikit dibandingkan rumah-rumah lainnya.
 2. Distribusi Luas Tanah dan Luas Bangunan: Kedua grafik ini menunjukkan bahwa kebanyakan rumah memiliki luas tanah dan luas bangunan di ukuran yang relatif kecil hingga sedang. Hanya ada sedikit rumah dengan ukuran tanah dan bangunan yang sangat besar.
+   
+![download](https://github.com/user-attachments/assets/45fa2aa8-6601-4d04-9222-809e4c82441c)
+Kebanyakan rumah memiliki sekitar 3 sampai 4 kamar tidur dan 3 sampai 4 kamar mandi. Sangat sedikit rumah yang memiliki kamar tidur atau kamar mandi dalam jumlah sangat banyak (lebih dari 10 kamar).
 
+![download](https://github.com/user-attachments/assets/bd699e23-d4c7-4093-8834-7a8cabdc67c2)
+Gambar ini menunjukkan bahwa sebagian besar rumah memiliki garasi, sementara sisanya tidak memiliki garasi. Artinya, keberadaan garasi adalah salah satu fitur umum pada rumah-rumah di dataset ini.
+
+### EDA Multivariate
+![download](https://github.com/user-attachments/assets/8b759702-8632-474b-8bd2-724a99b6e869)
+![download](https://github.com/user-attachments/assets/fa222d15-46c5-44bf-974b-add5fe5c01b6)
+![download](https://github.com/user-attachments/assets/9812368f-9ee9-4c5e-8614-a914e40e5ff8)
+
+Secara umum, data menunjukkan bahwa luas tanah dan luas bangunan memiliki hubungan positif dengan harga rumah—semakin besar luas tanah atau bangunan, harga rumah cenderung lebih tinggi. Namun, terlihat juga beberapa outlier, di mana rumah dengan luas yang sangat besar tidak selalu diikuti dengan harga yang proporsional, mengindikasikan adanya faktor lain yang mempengaruhi harga, seperti lokasi atau fasilitas tambahan.
+
+Selain itu, mayoritas rumah memiliki jumlah kamar tidur dan kamar mandi di kisaran 3-4, menunjukkan preferensi pasar yang umum. Terkait keberadaan garasi, baik rumah yang memiliki garasi maupun yang tidak, memiliki distribusi harga yang cukup mirip, meskipun rumah dengan garasi cenderung memiliki variasi harga yang lebih tinggi.
+
+**Korelasi Matriks**
+![download](https://github.com/user-attachments/assets/5f182429-4fa9-4e8d-9131-9d7c5318a13e)
+
+Luas Tanah (LT) dan Luas Bangunan (LB) memiliki korelasi cukup kuat dengan Harga Rumah (HARGA), masing-masing sebesar 0.74 dan 0.65. Artinya, semakin besar luas tanah atau bangunan, harga rumah cenderung lebih tinggi.
+Korelasi antara Jumlah Kamar Tidur (JKT) dan Jumlah Kamar Mandi (JKM) sangat tinggi (0.85), menunjukkan bahwa rumah dengan banyak kamar tidur biasanya juga memiliki banyak kamar mandi.
+Faktor Garasi (GRS) memiliki korelasi yang sangat rendah dengan harga maupun fitur lainnya, artinya keberadaan garasi tidak terlalu mempengaruhi harga rumah di dataset ini.
+Secara keseluruhan, tidak ada indikasi multikolinearitas ekstrem (korelasi mendekati 1) antar fitur kecuali antara JKT dan JKM, yang perlu diperhatikan saat modeling.
 
 ---
 
