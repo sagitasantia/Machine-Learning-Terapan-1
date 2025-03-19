@@ -244,6 +244,7 @@ Siap! Aku hapus bagian “miliar”-nya dan bikin jadi lebih simpel & general. B
 ---
 
 ### **Contoh Perbandingan Prediksi:**
+![image](https://github.com/user-attachments/assets/77e74caf-3002-405d-9d8b-a3e3dabb53cb)
 
 | Actual Price     | XGBoost Prediction | Random Forest Prediction | KNN Prediction |
 |------------------|-------------------|--------------------------|---------------|
