@@ -35,7 +35,7 @@ Saat ini, menentukan harga rumah yang sesuai cukup sulit karena ada banyak fakto
 ## Solution Statements:
 
 1. Melakukan Exploratory Data Analysis (EDA) untuk mengetahui hubungan antara fitur-fitur seperti luas bangunan, jumlah kamar, dan fasilitas lainnya terhadap harga rumah.
-2. Membangun model Machine Learning untuk memprediksi harga rumah di daerah Tebet, Jakarta Selatan menggunakan dua algoritma, yaituRandom Forest Regressor, XGBoost Regressor ,KNN Regressor
+2. Membangun model Machine Learning untuk memprediksi harga rumah di daerah Tebet, Jakarta Selatan menggunakan algoritma, yaitu Random Forest, XGBOOST, KNN, Linear Regression
 ---
 
 ## **3. Data Understanding**
