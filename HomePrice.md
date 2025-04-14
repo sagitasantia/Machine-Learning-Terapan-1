@@ -182,9 +182,6 @@ n_neighbors=5 → mempertimbangkan 5 tetangga terdekat untuk memprediksi harga r
 ---
 
 4. Linear Regression
-   
-![image](https://github.com/user-attachments/assets/0c3fea65-ea52-4b5d-aea8-1776988b1c95)
-
 
 Linear Regression adalah model yang memprediksi nilai kontinu dengan mengasumsikan hubungan linier antara fitur dan target. Model ini mencari garis yang paling pas untuk memprediksi harga rumah berdasarkan fitur yang diberikan.
 
