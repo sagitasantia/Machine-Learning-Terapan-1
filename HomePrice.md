@@ -8,11 +8,13 @@
 
 ## **1. Domain Proyek**
 
-Permasalahan harga properti di Jakarta, khususnya di Jakarta Selatan, menjadi salah satu tantangan yang dihadapi masyarakat saat ini. Berdasarkan data dari [Antara News](https://www.antaranews.com/berita/4632209/ingin-beli-rumah-di-jakarta-selatan-segini-harganya-di-tahun-2025), harga rumah di Jakarta Selatan pada tahun 2025 rata-rata mencapai **Rp 1,4 miliar hingga Rp 40 miliar**, tergantung pada lokasi, ukuran, dan fasilitas.
+Permasalahan harga properti di Jakarta, khususnya di Jakarta Selatan, menjadi salah satu tantangan yang dihadapi masyarakat saat ini. Berdasarkan data dari Antara News[Antara News](https://www.antaranews.com/berita/4632209/ingin-beli-rumah-di-jakarta-selatan-segini-harganya-di-tahun-2025), harga rumah di Jakarta Selatan pada tahun 2025 rata-rata mencapai Rp 1,4 miliar hingga Rp 40 miliar, tergantung pada lokasi, ukuran, dan fasilitas.
 
-Selain itu, riset dari [Bisa.ai](https://bisa.ai/portofolio/detail/MjQzOA) menunjukkan bahwa harga rumah sangat dipengaruhi oleh berbagai faktor seperti luas tanah, luas bangunan, jumlah kamar, dan ketersediaan garasi.
+Selain itu, riset dari Bisa.ai[Bisa.ai](https://bisa.ai/portofolio/detail/MjQzOA) menunjukkan bahwa harga rumah sangat dipengaruhi oleh berbagai faktor seperti luas tanah, luas bangunan, jumlah kamar, dan ketersediaan garasi.
 
-Oleh karena itu, prediksi harga rumah secara akurat menggunakan machine learning dapat membantu masyarakat (baik pembeli maupun penjual) dalam menentukan harga properti yang sesuai.
+Dalam penelitian sebelumnya yang dilakukan oleh Nuzuliarini Nuris menggunakan metode Regresi Linear untuk memprediksi harga rumah, ditemukan bahwa harga rumah sangat dipengaruhi oleh luas bangunan, dengan nilai korelasi antara luas bangunan dan harga rumah mencapai 0,80, menunjukkan hubungan yang sangat kuat. Penelitian ini juga menunjukkan bahwa harga rumah tidak dipengaruhi oleh jenis sertifikat, dengan korelasi sebesar 0,00. Metode yang digunakan dalam penelitian ini menunjukkan hasil yang baik, dengan tingkat akurasi mencapai 86,41% dan evaluasi metrik R² = 0.78 dan MAE = 313.000,83​ Nuris, N (2024).
+
+Oleh karena itu, proyek ini mengembangkan model prediksi harga rumah dengan menggunakan algoritma machine learning yang lebih kompleks dan pendekatan yang lebih beragam dibandingkan dengan penelitian sebelumnya. Dengan menambahkan faktor-faktor seperti jumlah kamar, ketersediaan garasi, dan lokasi, model ini diharapkan dapat memberikan prediksi harga rumah yang lebih akurat dan lebih sesuai dengan kebutuhan pembeli serta penjual rumah di daerah Tebet, Jakarta Selatan.Oleh karena itu, prediksi harga rumah secara akurat menggunakan machine learning dapat membantu masyarakat (baik pembeli maupun penjual) dalam menentukan harga properti yang sesuai.
 
 ---
 
@@ -179,9 +181,36 @@ Pada tahap ini saya menggunakan parameter:
 n_neighbors=5 → mempertimbangkan 5 tetangga terdekat untuk memprediksi harga rumah.
 ---
 
+4. Linear Regression
+   
+![image](https://github.com/user-attachments/assets/0c3fea65-ea52-4b5d-aea8-1776988b1c95)
+
+
+Linear Regression adalah model yang memprediksi nilai kontinu dengan mengasumsikan hubungan linier antara fitur dan target. Model ini mencari garis yang paling pas untuk memprediksi harga rumah berdasarkan fitur yang diberikan.
+
+Kelebihan:
+
+- Mudah dipahami dan cepat diimplementasikan.
+
+- Efisien untuk data dengan hubungan linier.
+
+Kekurangan:
+
+- Tidak efektif untuk data dengan hubungan non-linier.
+
+- Sensitif terhadap outlier.
+
+Parameter yang digunakan:
+
+- fit_intercept=True: Menghitung intercept (bias).
+
+- positive=True: Koefisien regresi harus bernilai positif.
+
+---
+
 ### **Hyperparameter Tuning**
 
-Hyperparameter tuning adalah proses untuk mencari kombinasi parameter terbaik yang dapat meningkatkan performa model machine learning. Setiap algoritma memiliki parameter tertentu yang bisa diatur sebelum proses training, dan parameter ini disebut **hyperparameter**.
+**Hyperparameter tuning** adalah proses untuk mencari kombinasi parameter terbaik yang dapat meningkatkan performa model machine learning. Setiap algoritma memiliki parameter tertentu yang bisa diatur sebelum proses training, dan parameter ini disebut **hyperparameter**.
 
 Pada tahap ini, saya menggunakan teknik **GridSearchCV**, yaitu metode pencarian sistematis untuk mencoba semua kombinasi parameter yang telah ditentukan, kemudian memilih kombinasi yang memberikan hasil terbaik berdasarkan evaluasi model.
 
@@ -210,6 +239,12 @@ Berikut parameter yang dicoba untuk masing-masing algoritma:
 
 ---
 
+### **Linear Regression:**
+- `fit_intercept`: Menentukan apakah model akan menghitung intercept (bias) atau tidak. Nilai yang dicoba adalah **[True, False]**.
+- `positive`: Menentukan apakah koefisien regresi harus bernilai positif. Nilai yang dicoba adalah **[True, False]**.
+
+---
+
 
 ## **6. Evaluation**
 
@@ -223,52 +258,93 @@ Berikut parameter yang dicoba untuk masing-masing algoritma:
 
 ### **Hasil Evaluasi Akhir:**
 
-![image](https://github.com/user-attachments/assets/15fa3591-607d-4023-bd9c-3766d3b5310e)
+![image](https://github.com/user-attachments/assets/df4ebecb-f940-4669-93ad-bca8c8d8d58f)
+
 
 | Model               | Best Params                                                                 | MAE           | R² Score |
 |--------------------|-----------------------------------------------------------------------------|--------------|---------|
-| **XGBoost**         | {'learning_rate': 0.01, 'max_depth': 5, 'n_estimators': 100}                 | 3,071,323,000 | 0.74    |
-| **Random Forest**   | {'max_depth': None, 'min_samples_split': 5, 'n_estimators': 300}             | **2,913,505,000** | **0.76** |
-| **KNN**             | {'metric': 'euclidean', 'n_neighbors': 9, 'weights': 'distance'}             | 3,316,559,000 | 0.68    |
-
+| **XGBoost**         | {'learning_rate': 0.01, 'max_depth': 3, 'n_estimators': 100}                 | 2.161057e+09	 | 0.74    |
+| **Random Forest**   | {'max_depth': None, 'min_samples_split': 2, 'n_estimators': 300}             | 2.250124e+09 | 0.67 |
+| **KNN**             | {'metric': 'euclidean', 'n_neighbors': 9, 'weights': 'distance'}             | 2.365660e+09 | 0.66   |
+| **Linear Regression**             |{'fit_intercept': True, 'positive': False}             | 2.256256e+09	 | 0.74    |
 ---
 
 ### **Interpretasi Hasil:**
 
-- Model **Random Forest Regressor** memiliki nilai MAE paling rendah sekitar **2.91 miliar**, yang berarti rata-rata prediksi harga rumah meleset sekitar angka tersebut dari harga aslinya. Nilai **R² Score sebesar 0.76** menunjukkan model ini dapat menjelaskan sekitar 76% variasi harga rumah berdasarkan fitur yang tersedia. Oleh karena itu, Random Forest menjadi model terbaik pada proyek ini.
+Berdasarkan hasil evaluasi di atas, model terbaik adalah XGBoost karena:
 
-- Model **XGBoost** menunjukkan performa cukup baik dengan MAE sekitar **3.07 miliar** dan R² Score **0.74**. Prediksi model ini juga cukup dekat dengan harga asli, namun masih sedikit di bawah Random Forest.
+Memiliki MAE terkecil (2,16 miliar / 21,6%), menunjukkan prediksi paling akurat.
+Mendapatkan R² Score tertinggi (0.74), yang berarti model dapat menjelaskan 74% variasi dalam data.
+Dengan hasil tersebut, XGBoost menjadi model yang paling direkomendasikan untuk digunakan dalam tahap prediksi akhir.
 
-- Model **K-Nearest Neighbors (KNN)** memiliki performa paling rendah di antara ketiganya. Nilai MAE-nya lebih tinggi, yaitu sekitar **3.31 miliar**, dan R² Score sebesar **0.68**, yang artinya model ini kurang mampu menjelaskan variasi harga rumah dengan baik.
-
----
+--
 
 ### **Contoh Perbandingan Prediksi:**
 
-![image](https://github.com/user-attachments/assets/77e74caf-3002-405d-9d8b-a3e3dabb53cb)
+![image](https://github.com/user-attachments/assets/3ce91e33-79be-470f-b114-05a1e4707a60)
 
-| Actual Price     | XGBoost Prediction | Random Forest Prediction | KNN Prediction |
-|------------------|-------------------|--------------------------|---------------|
-| Rp 25.00 Miliar  | Rp 22.66 Miliar   | Rp 22.90 Miliar          | Rp 22.06 Miliar|
-| Rp 8.00 Miliar   | Rp 10.05 Miliar   | Rp 9.02 Miliar           | Rp 8.00 Miliar |
-| Rp 20.00 Miliar  | Rp 18.79 Miliar   | Rp 17.26 Miliar          | Rp 16.23 Miliar|
-| Rp 39.00 Miliar  | Rp 31.61 Miliar   | Rp 33.38 Miliar          | Rp 23.45 Miliar|
-| Rp 16.00 Miliar  | Rp 17.38 Miliar   | Rp 16.67 Miliar          | Rp 15.41 Miliar|
-| Rp 11.98 Miliar  | Rp 12.91 Miliar   | Rp 12.26 Miliar          | Rp 12.34 Miliar|
-| Rp 15.00 Miliar  | Rp 12.50 Miliar   | Rp 13.69 Miliar          | Rp 12.26 Miliar|
-| Rp 20.00 Miliar  | Rp 16.98 Miliar   | Rp 16.40 Miliar          | Rp 16.16 Miliar|
-| Rp 19.50 Miliar  | Rp 16.07 Miliar   | Rp 17.69 Miliar          | Rp 12.35 Miliar|
-| Rp 15.00 Miliar  | Rp 12.56 Miliar   | Rp 14.90 Miliar          | Rp 15.00 Miliar|
+
+| No. | LT        | LB        | JKT  | JKM      | GRS | Harga Aktual       | XGBoost Prediction  | Random Forest Prediction | KNN Prediction       | Linear Regression Prediction |
+|-----|-----------|-----------|------|----------|-----|--------------------|---------------------|---------------------------|----------------------|------------------------------|
+| 1   | 0.519573  | 0.43750   | 0.5  | 0.333333 | 1   | Rp 14.00 Miliar    | Rp 13.08 Miliar     | Rp 10.18 Miliar           | Rp 12.83 Miliar      | Rp 12.90 Miliar              |
+| 2   | 0.806643  | 0.50125   | 0.5  | 0.666667 | 1   | Rp 15.00 Miliar    | Rp 20.39 Miliar     | Rp 22.97 Miliar           | Rp 22.04 Miliar      | Rp 17.77 Miliar              |
+| 3   | 0.173191  | 0.15000   | 0.0  | 0.333333 | 0   | Rp 5.70 Miliar     | Rp 3.79 Miliar      | Rp 3.85 Miliar            | Rp 3.39 Miliar       | Rp 4.56 Miliar               |
+| 4   | 0.252669  | 0.71625   | 0.5  | 0.666667 | 0   | Rp 13.00 Miliar    | Rp 12.55 Miliar     | Rp 12.56 Miliar           | Rp 12.97 Miliar      | Rp 12.35 Miliar              |
+| 5   | 0.539739  | 0.58750   | 0.5  | 0.333333 | 1   | Rp 17.50 Miliar    | Rp 17.09 Miliar     | Rp 17.09 Miliar           | Rp 13.85 Miliar      | Rp 14.97 Miliar              |
+| 6   | 0.098458  | 0.09250   | 0.0  | 0.333333 | 1   | Rp 2.20 Miliar     | Rp 2.49 Miliar      | Rp 2.77 Miliar            | Rp 3.07 Miliar       | Rp 3.84 Miliar               |
+| 7   | 0.450771  | 0.23250   | 0.0  | 0.333333 | 1   | Rp 10.00 Miliar    | Rp 11.17 Miliar     | Rp 11.33 Miliar           | Rp 13.49 Miliar      | Rp 10.04 Miliar              |
+| 8   | 0.211151  | 0.31250   | 1.0  | 0.666667 | 1   | Rp 9.00 Miliar     | Rp 6.17 Miliar      | Rp 6.57 Miliar            | Rp 9.18 Miliar       | Rp 7.35 Miliar               |
+| 9   | 0.246738  | 0.31250   | 1.0  | 0.666667 | 1   | Rp 12.00 Miliar    | Rp 7.06 Miliar      | Rp 6.47 Miliar            | Rp 8.69 Miliar       | Rp 7.81 Miliar               |
+| 10  | 0.447212  | 0.37500   | 0.5  | 0.333333 | 1   | Rp 6.50 Miliar     | Rp 13.90 Miliar     | Rp 19.88 Miliar           | Rp 22.40 Miliar      | Rp 11.22 Miliar              |
+
 
 ---
 
-### **Kesimpulan:**
+### Hasil Prediksi dan Evaluasi Model
 
-Berdasarkan evaluasi di atas, **Random Forest Regressor** dipilih sebagai model terbaik untuk prediksi harga rumah, karena:
+#### Penjelasan Fitur (Setelah Encoding)
+Sebelum masuk ke bagian kesimpulan, berikut adalah penjelasan mengenai fitur-fitur yang digunakan dalam model prediksi harga rumah yang telah melalui proses encoding:
 
-- Memiliki MAE paling rendah (prediksi lebih dekat ke harga asli).
-- Memiliki R² Score tertinggi (mampu menjelaskan sebagian besar variasi harga rumah).
-- Lebih stabil dalam menghadapi variasi data dan outlier dibandingkan model lain.
+- **LT (Luas Tanah)** dan **LB (Luas Bangunan)**: Merupakan nilai numerik hasil normalisasi.
+- **JKT (Wilayah Jakarta)**: Fitur kategorikal yang telah diubah menjadi numerik menggunakan label encoding.
+  - 0.0 = Jakarta Barat
+  - 0.5 = Jakarta Selatan
+  - 1.0 = Jakarta Timur
+- **JKM (Jenis Kategori Rumah atau Lokasi Khusus)**: Kategori lain berdasarkan lokasi atau jenis bangunan, juga hasil encoding.
+  - 0.333 = Kategori A
+  - 0.666 = Kategori B
+  - 1.0 = Kategori C
+- **GRS (Garasi)**:
+  - 0 = Tidak memiliki garasi
+  - 1 = Memiliki garasi
+
+### Kesimpulan dan Evaluasi
+
+Dari pertanyaan bisnis mengenai bagaimana memprediksi harga rumah di Jakarta, khususnya daerah Tebet, dapat disimpulkan bahwa sistem prediksi yang dikembangkan dengan pendekatan machine learning mampu memberikan estimasi harga yang cukup akurat dan bermanfaat. Sistem ini memanfaatkan data sederhana seperti luas tanah, bangunan, lokasi, dan keberadaan garasi untuk menghasilkan prediksi harga rumah, sehingga dapat digunakan oleh berbagai kalangan.
+
+Bagi masyarakat umum, solusi ini dapat membantu memberikan gambaran harga rumah tanpa harus berkonsultasi langsung dengan agen properti. Cukup memasukkan beberapa informasi dasar, sistem sudah bisa memberikan estimasi harga. Sedangkan bagi pelaku properti seperti agen atau pengembang, model ini bisa menjadi alat bantu dalam menetapkan harga jual yang kompetitif berdasarkan tren dan data historis.
+
+Bagi pengembang sistem, hasil evaluasi terhadap berbagai algoritma juga memberikan wawasan terkait kelebihan dan kekurangan masing-masing model, sehingga dapat dijadikan dasar dalam memilih metode yang paling sesuai dengan kebutuhan, baik dari sisi akurasi maupun kestabilan hasil prediksi.
+
+### Observasi dan Analisis:
+
+**KNN:**
+Secara keseluruhan, KNN cenderung memberikan prediksi yang paling mendekati harga rumah yang sebenarnya. Contohnya pada baris pertama, di mana KNN memprediksi harga Rp 12.83 Miliar, yang sangat dekat dengan harga aktual Rp 14.00 Miliar.
+
+**XGBoost dan Random Forest:**
+Kedua model ini lebih cenderung memberikan prediksi yang lebih tinggi, terutama pada rumah dengan luas tanah dan bangunan yang lebih besar. Misalnya pada baris kedua, XGBoost memprediksi harga sebesar Rp 20.39 Miliar, yang jauh lebih tinggi dibandingkan harga aktual Rp 15.00 Miliar.
+
+**Linear Regression:**
+Hasil prediksi Linear Regression cenderung lebih konservatif dibandingkan model lainnya. Misalnya pada baris pertama, harga yang diprediksi oleh Linear Regression adalah Rp 12.90 Miliar, yang sedikit lebih rendah dari harga aktual. Namun, Linear Regression memberikan prediksi yang lebih stabil dengan deviasi yang lebih kecil pada rumah-rumah dengan karakteristik ekstrem.
+
+### Kesimpulan:
+Secara keseluruhan, KNN tampaknya memberikan prediksi yang paling akurat dibandingkan dengan model lainnya, dengan prediksi yang paling mendekati harga aktual di sebagian besar sampel.
+
+XGBoost dan Random Forest memberikan prediksi yang lebih tinggi pada rumah dengan luas tanah dan bangunan yang besar, yang mungkin menunjukkan kecenderungan untuk overestimate pada beberapa kasus.
+
+Linear Regression memberikan hasil yang lebih konservatif, meskipun tidak selalu mendekati harga aktual, hasil prediksinya cukup stabil.
+
+Dokumentasi ini memberikan wawasan tentang bagaimana masing-masing model bekerja dalam memprediksi harga rumah berdasarkan data input tertentu dan seberapa baik mereka mencocokkan harga rumah yang sebenarnya.
 
 ---
 
@@ -276,4 +352,5 @@ Berdasarkan evaluasi di atas, **Random Forest Regressor** dipilih sebagai model 
 
 1. Bisa.ai Portofolio, Prediksi Harga Rumah: [https://bisa.ai/portofolio/detail/MjQzOA](https://bisa.ai/portofolio/detail/MjQzOA)
 2. Antaranews, Harga Rumah Jakarta Selatan 2025: [https://www.antaranews.com/berita/4632209/ingin-beli-rumah-di-jakarta-selatan-segini-harganya-di-tahun-2025](https://www.antaranews.com/berita/4632209/ingin-beli-rumah-di-jakarta-selatan-segini-harganya-di-tahun-2025)
-3. Dataset: [https://www.kaggle.com/datasets/wisnuanggara/daftar-harga-rumah](https://www.kaggle.com/datasets/wisnuanggara/daftar-harga-rumah)
+3. https://www.researchgate.net/publication/383157878_Analisis_Prediksi_Harga_Rumah_Pada_Machine_Learning_Metode_Regresi_Linear
+4. Dataset: [https://www.kaggle.com/datasets/wisnuanggara/daftar-harga-rumah](https://www.kaggle.com/datasets/wisnuanggara/daftar-harga-rumah)
